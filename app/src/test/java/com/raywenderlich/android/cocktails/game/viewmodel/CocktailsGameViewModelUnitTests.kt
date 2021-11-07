@@ -109,4 +109,16 @@ class CocktailsGameViewModelUnitTests {
         viewModel.initGame()
         verify(errorObserver, times(2)).onChanged(eq(false))
     }
+
+    @Test
+    fun init_shouldShowScore_whenFactoryReturnsSuccess(){
+        val score = mock<Score>()
+        whenever(game.score).thenReturn(score)
+
+        setUpFactoryWithSuccessGame(game)
+
+        viewModel.initGame()
+
+        verify(scoreObserver).onChanged(eq(score))
+    }
 }
