@@ -25,9 +25,11 @@ class CocktailsGameViewModel(
 
     fun initGame(){
         loadingLiveData.value = true
-        loadingLiveData.value = false
+        errorLiveData.value = false
         factory.buildGame(object : CocktailsGameFactory.Callback{
             override fun onSuccess(game: Game) {
+                errorLiveData.value = false
+                loadingLiveData.value = false
             }
 
             override fun onError() {

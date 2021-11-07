@@ -102,4 +102,11 @@ class CocktailsGameViewModelUnitTests {
 
         verify(loadingObserver).onChanged(eq(false))
     }
+
+    @Test
+    fun init_shouldHideError_whenFactoryReturnsSuccess(){
+        setUpFactoryWithSuccessGame(game)
+        viewModel.initGame()
+        verify(errorObserver, times(2)).onChanged(eq(false))
+    }
 }
